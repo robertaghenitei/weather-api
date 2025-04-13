@@ -61,7 +61,7 @@ class WeatherApp(tk.Tk):
 
     def click_get_city(self, event):
         self.city = self.city_var.get().strip()
-        appid="6620adbdca1f561b30ab5e6c8c754a78" # use a openweathermap key here
+        appid="" # use a openweathermap key here
         URL = "http://api.openweathermap.org/data/2.5/forecast"
         PARAMS = {"q": self.city, "appid": appid, "units": "metric", "lang": "RO"}
         try:
