@@ -63,7 +63,7 @@ class WeatherApp(tk.Tk):
                 data = response.json()
                 self.city_var = ""
                 pprint.pprint(data)
-                self.weather_info.config(text=f"Temp: {data['list'][3]['main']['temp']}\nCondition: {data['list'][7]['weather'][0]['description']}")
+                self.weather_info.config(text=f"Temp: {data['list'][0]['main']['temp']}\nCondition: {data['list'][0]['weather'][0]['description']}")
                 
             else:
                 messagebox.showwarning("Selection Error", "Request was not Successful")
