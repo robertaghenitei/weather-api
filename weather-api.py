@@ -41,10 +41,21 @@ class WeatherApp(tk.Tk):
         self.forecast_frame.grid(row=2, column=0, columnspan=3, padx=10, pady=10, sticky="nsew")
 
         # Example forecast labels (you'd loop through actual data here)
-        for i in range(5):
-            day_label = ttk.Label(self.forecast_frame, text=f"Day {i+1}: --")
-            day_label.grid(row=0, column=i, padx=5, pady=5)
+        
+        self.day_label1 = ttk.Label(self.forecast_frame, text=f"Day 1: --")
+        self.day_label1.grid(row=0, column=0, padx=5, pady=5)
 
+        self.day_label2 = ttk.Label(self.forecast_frame, text=f"Day 2: --")
+        self.day_label2.grid(row=0, column=1, padx=5, pady=5)
+
+        self.day_label3 = ttk.Label(self.forecast_frame, text=f"Day 3: --")
+        self.day_label3.grid(row=0, column=2, padx=5, pady=5)
+
+        self.day_label4 = ttk.Label(self.forecast_frame, text=f"Day 4: --")
+        self.day_label4.grid(row=0, column=3, padx=5, pady=5)
+
+        self.day_label5 = ttk.Label(self.forecast_frame, text=f"Day 5: --")
+        self.day_label5.grid(row=1, column=0, padx=5, pady=5)
         # Make columns expand nicely
         self.columnconfigure(1, weight=1)
 
@@ -61,10 +72,14 @@ class WeatherApp(tk.Tk):
             if response.status_code == 200:
                 messagebox.showwarning("Saved", "Request was Successful") 
                 data = response.json()
-                self.city_var = ""
+                self.city_var.set("")
                 pprint.pprint(data)
                 self.weather_info.config(text=f"Temp: {data['list'][0]['main']['temp']}\nCondition: {data['list'][0]['weather'][0]['description']}")
-                
+                self.day_label1.config(text=f"Day 1: {data['list'][4]['main']['temp']}")
+                self.day_label2.config(text=f"Day 2: {data['list'][13]['main']['temp']}")
+                self.day_label3.config(text=f"Day 3: {data['list'][21]['main']['temp']}")
+                self.day_label4.config(text=f"Day 4: {data['list'][30]['main']['temp']}")
+                self.day_label5.config(text=f"Day 5: {data['list'][39]['main']['temp']}")
             else:
                 messagebox.showwarning("Selection Error", "Request was not Successful")
     #Handling any exceptions that may occur
